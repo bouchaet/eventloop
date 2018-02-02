@@ -24,14 +24,14 @@ namespace eventloop
             /* MAIN LOOP */
             do
             {
-                /*await*/ 
+                /*await*/
                 Task.Delay(500).Wait(); // accept sock
                 Interlocked.Increment(ref activeClient);
                 Func<int, Task> a = async (i) =>
                 {
                     Console.WriteLine($"client {i} connected. ({activeClient} are active)");
                     var count = 0;
-                    while ((DateTime.Now.Second + i) % 59 != 0) // clientsock.Connected;
+                    while ((DateTime.Now.Second * 11 + i) % 101 != 0) // clientsock.Connected;
                     {
                         await Task.Delay(1500); // sock.read
                         await Task.Delay(50); // get response
